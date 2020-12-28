@@ -1,0 +1,28 @@
+<h2>Show Record</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @album.title %>
+  </li>
+
+  <li>
+    <strong>Summary:</strong>
+    <%= @album.summary %>
+  </li>
+
+  <li>
+    <strong>Year:</strong>
+    <%= @album.year %>
+  </li>
+
+  <li>
+    <strong>Genre:</strong>
+    <%= @album.genre %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: album_path(@conn, :edit, @album) %></span>
+<span><%= link "Back", to: album_path(@conn, :index) %></span>
