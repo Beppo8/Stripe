@@ -18,6 +18,7 @@ defmodule TeacherWeb.Router do
 
     get "/", AlbumController, :index
     resources "/albums", AlbumController
+    resources "/purchases", PurchaseController, only: [:create]
   end
 
   # Other scopes may use custom stacks.

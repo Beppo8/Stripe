@@ -20,7 +20,19 @@
         <td><%= album.year %></td>
         <td><%= cents_to_dollars(album.price) %></td>
         <td>
-          <%= link "Buy", to: "#" %>
+          <form action="/purchases" method="POST">
+            <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="pk_test_YOUR_KEY"
+              data-name="Record Store"
+              data-description="Purchase <%= album.title %>"
+              data-shipping-address="true"
+              data-billing-address="true"
+              data-label="Buy"
+              data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+              data-locale="auto">
+              </script>
+            </form>
         </td>
       </tr>
   <% end %>
