@@ -18,6 +18,7 @@ defmodule TeacherWeb.Router do
 
     get "/", AlbumController, :index
     resources "/albums", AlbumController
+    resource "/sessions", SessionsController, only: [:new, :create]
     resources "/purchases", PurchaseController, only: [:create]
     get "/receipt", PurchaseController, :receipt
   end
