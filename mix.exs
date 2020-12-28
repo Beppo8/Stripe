@@ -41,6 +41,7 @@ defmodule Teacher.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:number, "~> 0.5.5"},
       {:gettext, "~> 0.11"},
+      {:stripity_stripe, "~> 2.9"},
       {:cowboy, "~> 1.0"}
     ]
   end

@@ -8,6 +8,15 @@ defmodule Teacher.Purchases do
 
   alias Teacher.Purchases.Customer
 
+  def create_stripe_customer(email, token) do
+    case Stripe.Customers.create(email: email, source: token) do
+      {:ok, %{id: stripe_customer_id}} ->
+        stripe_customer_id
+      {:error, _} ->
+        nil
+    end
+  end
+
   @doc """
   Returns the list of customers.
 

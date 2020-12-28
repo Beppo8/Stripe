@@ -20,7 +20,7 @@
         <td><%= album.year %></td>
         <td><%= cents_to_dollars(album.price) %></td>
         <td>
-          <%= form_for @conn, purchase_path(@conn, :create), [method: :post], fn f -> %>
+          <%= form_for @conn, purchase_path(@conn, :create, album_id: album.id), [method: :post], fn f -> %>
           <form action="/purchases" method="POST">
             <script
               src="https://checkout.stripe.com/checkout.js" class="stripe-button"

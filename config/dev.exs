@@ -44,6 +44,9 @@ config :teacher, TeacherWeb.Endpoint,
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 
+config :stripity_stripe, secret_key: "YOUR_SECRET_KEY"
+config :stripity_stripe, platform_client_id: "YOUR_PLATFORM_CLIENT_ID"
+
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
