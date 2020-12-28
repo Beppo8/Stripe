@@ -1,0 +1,3 @@
+<h1>Receipt</h1>
+<p>You bought <%= @album.title %> by <%= @album.artist %></p>
+<p>We´ll email you at <%= @customer.email %> when your record ships</p>
