@@ -10,6 +10,7 @@ defmodule Teacher.Records.Album do
     field :title, :string
     field :year, :string
     field :price, :integer
+    has_many :customers, Teacher.Purchases.Customer
 
     timestamps()
   end
