@@ -8,6 +8,29 @@ defmodule Teacher.Purchases do
 
   alias Teacher.Purchases.Customer
 
+  def charfe_customer(customer, amount) do
+    source = customer.stripe_customer_id
+      |> get_stripe_customer()
+      |> get_in([:default_source])
+
+    opts = [customer: customer.stripe_customer_id, source: source]
+    case Stripe.Charges.create(amount, opts) do
+      {:ok, charge} ->
+        {:ok, charge}
+      {:error, %{"error" => %{"message" => msg}}} ->
+        {:error, msg}
+    end
+  end
+
+  def get_stripe_customer(customer_id) do
+    case Stripe.Customers.get(customer_id) do
+      {:ok, customer} ->
+        customer
+      {:error, _} ->
+        nil
+    end
+  end
+
   def create_stripe_customer(email, token) do
     case Stripe.Customers.create(email: email, source: token) do
       {:ok, %{id: stripe_customer_id}} ->
