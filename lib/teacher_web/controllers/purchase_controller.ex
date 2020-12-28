@@ -6,6 +6,14 @@ defmodule TeacherWeb.PurchaseController do
   alias Teacher.Purchases.Customer
   alias Teacher.Purchases
 
+  def receipt(conn, params) do
+    customer = params["customer_id"]
+      |> Purchases.get_customer!()
+      |> Repo.preload(:album)
+    album = customer.album
+    render(conn, "receipt.html", customer: customer, album: album)
+  end
+
   def create(conn, params) do
     album = Records.get_album!(params["album_id"])
 
@@ -14,6 +22,15 @@ defmodule TeacherWeb.PurchaseController do
       |> Ecto.Changeset.put_assoc(:album, album)
       |> Ecto.Changeset.put_assoc(:ship_address, addr_changeset(params))
       |> Repo.insert!()
+
+    case Purchases.charge_customer(customer, album.price) do
+      {:ok, _charge} ->
+        redirect(conn, to: Route.purchase_path(conn, :receipt, customer_id: customer.id))
+      {:error, _msg} ->
+        conn
+        |> put_flash(:error, "We couldn´t charge your card")
+        |> redirect(to: album_path(conn, :index))
+    end
   end
 
   defp addr_changeset(attrs) do
