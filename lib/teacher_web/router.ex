@@ -19,8 +19,14 @@ defmodule TeacherWeb.Router do
     get "/", AlbumController, :index
     resources "/albums", AlbumController
     resource "/sessions", SessionsController, only: [:new, :create]
+    delete "/sign-out", SessionController, :delete
+    resource "/registrations", RegistrationController, only: [:new, :create]
     resources "/purchases", PurchaseController, only: [:create]
-    get "/receipt", PurchaseController, :receipt
+
+    resource "/customers", CustomerController, only: [:show] do
+      resource "/receipt", PurchaseController, :only: [:index, :show]
+    end
+
   end
 
   # Other scopes may use custom stacks.
