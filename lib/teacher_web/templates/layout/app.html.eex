@@ -18,6 +18,15 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <main role="main">
+        <%= link "Home", to: album_path(@conn, :index) %> |
+        <%= if signed_in?(@conn) do %>
+          <%= link "Order History", to: customer_receipt_path(@conn, :index, @current_customer) %>
+          <%= link "Sign out", to: session_path(@conn, :delete), method: :delete %>
+        <% else %>
+          <%= link "Sign In", to: session_path(@conn, :new) %>
+          |
+          <%= link "Sign up", to: registration_path(@conn, :new) %>
+        <% end %>
         <%= render @view_module, @view_template, assigns %>
       </main>
 

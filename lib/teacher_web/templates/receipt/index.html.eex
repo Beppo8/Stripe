@@ -1,0 +1,21 @@
+<h2>Order History</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for sold_album <- @sold_albums do %>
+    <tr>
+      <td class="text-right">
+        <span><%= link "Receipt details for #{sold_album.title}",
+                        to: customer_receipt_path(@conn, :show, @current_customer, sold_album.purchase_id),
+                        class: "btn btn-default btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

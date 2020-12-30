@@ -1,0 +1,7 @@
+<h2>Show Receipt</h2>
+
+<ul>
+
+</ul>
+
+<span><%= link "Back", to: customer_receipt_path(@conn, :index, @current_customer) %></span>
