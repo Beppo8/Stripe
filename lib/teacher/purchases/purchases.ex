@@ -5,10 +5,17 @@ defmodule Teacher.Purchases do
 
   import Ecto.Query, warn: false
   alias Teacher.Repo
+  alias Teacher.Accounts
 
   alias Teacher.Purchases.Customer
 
-  def charfe_customer(customer, amount) do
+  def list_albums!(customer) do
+    customer
+    |> Accounts.load_associations()
+    |> Map.fetch!(:albums)
+  end
+
+  def charge_customer(customer, amount) do
     source = customer.stripe_customer_id
       |> get_stripe_customer()
       |> get_in([:default_source])

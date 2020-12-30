@@ -7,6 +7,7 @@ defmodule TeacherWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Teacher.Plugs.SetAuth
   end
 
   pipeline :api do

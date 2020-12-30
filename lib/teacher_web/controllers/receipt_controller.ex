@@ -5,8 +5,8 @@ defmodule TeacherWeb.ReceiptController do
   alias Teacher.Purchases.Receipt
 
   def index(conn, _params) do
-    receipts = Purchases.list_receipts()
-    render(conn, "index.html", receipts: receipts)
+    sold_albums = Purchases.list_albums!(customer)
+    render(conn, "index.html", sold_albums: sold_albums)
   end
 
   def show(conn, %{"id" => id}) do
