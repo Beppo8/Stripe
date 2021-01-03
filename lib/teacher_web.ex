@@ -40,6 +40,8 @@ defmodule TeacherWeb do
       import TeacherWeb.Router.Helpers
       import TeacherWeb.ErrorHelpers
       import TeacherWeb.Gettext
+      import TeacherWebHelpers.Auth, only: [signed_in?: 1]
+      import TeacherWeb.Helpers.Number, only: [cents_to_dollars: 1]
     end
   end
 
