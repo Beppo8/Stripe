@@ -1,7 +1,16 @@
-<h2>Show Receipt</h2>
-
+<h2>Receipt</h2>
+<h3>You paid <%= @receipt.amount %> for
+    <%= @receipt.album.title %> by <%= @receipt.album.artist %></h3>
 <ul>
-
+  <li><b>Payment:</b> <%= @receipt.card_type %> ending in <%= @receipt.last_four %></li>
+  <li><b>Date:</b> <%= @receipt.created_at %></li>
+  <li><b>Contact:</b> <%= @receipt.email %></li>
+  <li><b>Ship to:</b>
+    <%= @receipt.album.ship_address.name %>
+    <%= @receipt.album.ship_address.line %>
+    <%= @receipt.album.ship_address.city %>
+    <%= @receipt.album.ship_address.state %>, <%= @receipt.album.ship_address.zip %>
+  </li>
 </ul>
 
 <span><%= link "Back", to: customer_receipt_path(@conn, :index, @current_customer) %></span>

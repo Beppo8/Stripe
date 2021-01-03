@@ -6,8 +6,16 @@ defmodule Teacher.Purchases do
   import Ecto.Query, warn: false
   alias Teacher.Repo
   alias Teacher.Accounts
+  alias Teacher.Purchases.Receipt
 
   alias Teacher.Purchases.Customer
+
+  def get_receipt!(id) do
+    {:ok, charge} = Charges.get(id)
+    charge
+    |> Receipt.map_attrs()
+    |> Receipt.build()
+  end
 
   def list_albums!(customer) do
     customer
